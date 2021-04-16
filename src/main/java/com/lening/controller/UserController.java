@@ -4,7 +4,6 @@ package com.lening.controller;
  * 机关单位: 乐柠教育
  */
 
-import com.lening.entity.DeptBean;
 import com.lening.entity.MeunBean;
 import com.lening.entity.UserBean;
 import com.lening.service.UserService;
@@ -24,6 +23,8 @@ import java.util.List;
 @RestController
 @RequestMapping("user")
 public class UserController {
+
+
     @Autowired
     private UserService userService;
 
