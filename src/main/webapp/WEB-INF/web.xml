@@ -51,4 +51,18 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <!--filter过滤器-->
+<!--    <filter>
+        <filter-name>MyFilter</filter-name>
+        <filter-class>com.lening.filter.MyFilter</filter-class>
+       &lt;!&ndash;这个初始化参数怎么读取&ndash;&gt;
+        <init-param>
+            <param-name>notCheckUrl</param-name>
+            <param-value>/user/getLogin.do</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>MyFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>-->
 </web-app>

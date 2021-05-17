@@ -6,6 +6,15 @@
     <result column="postname" jdbcType="VARCHAR" property="postname" />
     <result column="postdesc" jdbcType="VARCHAR" property="postdesc" />
   </resultMap>
+  <select id="getPostMeunIds" resultType="long">
+    select meunid from tb_post_meun where postid=#{postid}
+  </select>
+  <insert id="savePostMeun">
+    insert into tb_post_meun(postid,meunid) values(#{postid},#{meunid})
+  </insert>
+  <delete id="deletePostMeunByPostid">
+    delete from tb_post_meun where postid=#{postid}
+  </delete>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -82,7 +91,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from tb_post
     where id = #{id,jdbcType=BIGINT}

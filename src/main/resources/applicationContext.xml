@@ -13,6 +13,7 @@
 
 	<!--开启spring自动扫描，扫描com下所有的包  -->
 	<context:component-scan base-package="com.lening"/>
+	<import resource="redis-context.xml"/>
 
 	<!--dataSource-->
 	 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

@@ -4,6 +4,7 @@ package com.lening.service;
  * 机关单位: 乐柠教育
  */
 
+
 import com.lening.entity.DeptBean;
 import com.lening.utlis.Page;
 
@@ -13,5 +14,9 @@ import com.lening.utlis.Page;
  */
 public interface DeptService {
     Page<DeptBean> getDeptListConn(DeptBean deptBean, Integer pageNum, Integer pageSize);
+
+    DeptBean getDeptByDeptid(Long deptid);
+
+    void saveDeptPost(Long deptid, Long[] postids);
 }
 

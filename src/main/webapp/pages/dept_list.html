@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -24,7 +24,10 @@
                 <tr v-for="d in deptlist">
                     <td>{{d.id}}</td>
                     <td>{{d.deptname}}</td>
-                    <td>删除</td>
+                    <td>
+                        <button>删除</button>
+                        <button @click="toDeptPost(d.id)">选择职位</button>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="100">
@@ -37,6 +40,31 @@
                 </tr>
             </table>
         </div>
+        <div id="deptpostdiv" style="display:none;">
+            <table border="1" rules="all" align="center">
+                <tr align="center">
+                    <td colspan="100">
+                        <h1>目前正在给--{{entity.deptname}}--部门分配职位</h1>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td>
+                        职位
+                    </td>
+                    <td>
+                        <span v-for="p in plist">
+                            <input type="checkbox" v-model="postids" v-bind:value="p.id"/>{{p.postname}}<br>
+                        </span>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td colspan="100">
+                        <button @click="saveDeptPost()">保存</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
     </div>
 </body>
 <script type="text/javascript" src="../myjs/dept_list.js"></script>

@@ -2,6 +2,7 @@ package com.lening.mapper;
 
 import com.lening.entity.DeptBean;
 import com.lening.entity.DeptBeanExample;
+import com.lening.entity.PostBean;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +29,14 @@ public interface DeptMapper {
     int updateByPrimaryKeySelective(DeptBean record);
 
     int updateByPrimaryKey(DeptBean record);
+
+    Long[] getDeptPostIds(@Param("deptid") Long deptid);
+
+    void depeteDeptPost(@Param("deptid") Long deptid);
+
+    void saveDeptPost(@Param("deptid") Long deptid, @Param("postid") Long postid);
+
+    List<PostBean> getDeptPostList(@Param("deptid") Long deptid);
+
+    Long[] getUserPostByIdAndDeptid(@Param("userid") Long userid, @Param("deptid") Long deptid);
 }

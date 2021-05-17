@@ -33,5 +33,18 @@
         <property name="suffix" value=".jsp"></property>
         <property name="prefix" value="/WEB-INF/view/"></property>
     </bean>
-
+    <!--4.拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/*.do"/>
+            <bean class="com.lening.interceptor.MyInterceptor">
+                <property name="exceptUrls">
+                    <list>
+                        <value>/user/getLogin.do</value>
+                        <value>/user/getMeunList.do</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

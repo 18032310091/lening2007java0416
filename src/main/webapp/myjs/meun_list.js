@@ -1,7 +1,7 @@
 var vm = new Vue({
    el:'#meundiv',
    data:{
-        meunlist:[],
+       meunlist:[],
        pid:1,
        entity:{}
    } ,

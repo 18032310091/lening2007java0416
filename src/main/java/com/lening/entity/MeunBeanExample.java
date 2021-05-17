@@ -503,6 +503,66 @@ public class MeunBeanExample {
             addCriterion("icon not between", value1, value2, "icon");
             return (Criteria) this;
         }
+
+        public Criteria andIsbuttonIsNull() {
+            addCriterion("isbutton is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsbuttonIsNotNull() {
+            addCriterion("isbutton is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsbuttonEqualTo(Integer value) {
+            addCriterion("isbutton =", value, "isbutton");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsbuttonNotEqualTo(Integer value) {
+            addCriterion("isbutton <>", value, "isbutton");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsbuttonGreaterThan(Integer value) {
+            addCriterion("isbutton >", value, "isbutton");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsbuttonGreaterThanOrEqualTo(Integer value) {
+            addCriterion("isbutton >=", value, "isbutton");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsbuttonLessThan(Integer value) {
+            addCriterion("isbutton <", value, "isbutton");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsbuttonLessThanOrEqualTo(Integer value) {
+            addCriterion("isbutton <=", value, "isbutton");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsbuttonIn(List<Integer> values) {
+            addCriterion("isbutton in", values, "isbutton");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsbuttonNotIn(List<Integer> values) {
+            addCriterion("isbutton not in", values, "isbutton");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsbuttonBetween(Integer value1, Integer value2) {
+            addCriterion("isbutton between", value1, value2, "isbutton");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsbuttonNotBetween(Integer value1, Integer value2) {
+            addCriterion("isbutton not between", value1, value2, "isbutton");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -1,6 +1,7 @@
 package com.lening.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class UserBean {
     private Long id;
@@ -22,6 +23,25 @@ public class UserBean {
     private String gender;
 
     private String pwdsalt;
+
+    private Long[] deptids;
+    private List<DeptBean> dlist;
+
+    public Long[] getDeptids() {
+        return deptids;
+    }
+
+    public void setDeptids(Long[] deptids) {
+        this.deptids = deptids;
+    }
+
+    public List<DeptBean> getDlist() {
+        return dlist;
+    }
+
+    public void setDlist(List<DeptBean> dlist) {
+        this.dlist = dlist;
+    }
 
     public Long getId() {
         return id;

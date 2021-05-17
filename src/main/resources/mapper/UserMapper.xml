@@ -12,6 +12,62 @@
     <result column="gender" jdbcType="VARCHAR" property="gender" />
     <result column="pwdsalt" jdbcType="VARCHAR" property="pwdsalt" />
   </resultMap>
+
+  <select id="getUserMeunListById" resultType="MeunBean">
+      SELECT
+          d.*
+      FROM
+          tb_user_post a
+      LEFT JOIN tb_post b ON a.postid = b.id
+      LEFT JOIN tb_post_meun c ON b.id = c.postid
+      LEFT JOIN tb_meun d ON c.meunid = d.id
+      WHERE d.isbutton = 0
+      AND a.ismain = 1
+      AND a.userid = #{userid}
+  </select>
+<!--  <select id="getUserMeunUrlsById" resultType="MeunBean">-->
+<!--      SELECT-->
+<!--          d.*-->
+<!--      FROM-->
+<!--          tb_user_post a-->
+<!--      LEFT JOIN tb_post b ON a.postid = b.id-->
+<!--      LEFT JOIN tb_post_meun c ON b.id = c.postid-->
+<!--      LEFT JOIN tb_meun d ON c.meunid = d.id-->
+<!--      WHERE a.userid = #{userid}-->
+<!--  </select>-->
+  <select id="getUserMeunUrlsById" resultType="string">
+      SELECT
+          d.url
+      FROM
+          tb_user_post a
+      LEFT JOIN tb_post b ON a.postid = b.id
+      LEFT JOIN tb_post_meun c ON b.id = c.postid
+      LEFT JOIN tb_meun d ON c.meunid = d.id
+      WHERE a.userid = #{userid}
+  </select>
+  <select id="getLogin" resultType="UserBean">
+    select * from tb_user where accountname=#{uname} or telphone=#{uname}
+  </select>
+  <insert id="saveUserPost">
+    insert into tb_user_post(userid,postid) values(#{userid},#{postid})
+  </insert>
+  <select id="getUserDeptById" resultType="DeptBean">
+      select b.* from tb_user_dept a
+      left join tb_dept b on a.deptid = b.id
+      where a.userid = #{id}
+  </select>
+  <select id="getUserDeptidsById" resultType="long">
+      select deptid from tb_user_dept where userid=#{id}
+  </select>
+  <delete id="deleteUserPostById">
+      delete from tb_user_post where userid=#{id}
+  </delete>
+  <delete id="deleteUserDeptById">
+      delete from tb_user_dept where userid=#{id}
+  </delete>
+  <insert id="insertUserDept">
+    insert into tb_user_dept(userid,deptid) values(#{userid},#{deptid})
+  </insert>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -88,7 +144,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from tb_user
     where id = #{id,jdbcType=BIGINT}
@@ -103,13 +159,16 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.lening.entity.UserBean">
-    insert into tb_user (id, uname, pwd, 
-      age, birthday, telphone, 
+    <delete id="deleteUserById">
+      delete from tb_user where id = #{id}
+    </delete>
+    <insert id="insert" parameterType="com.lening.entity.UserBean">
+    insert into tb_user (id, uname, pwd,
+      age, birthday, telphone,
       address, gender, pwdsalt
       )
-    values (#{id,jdbcType=BIGINT}, #{uname,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
-      #{age,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{telphone,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{uname,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR},
+      #{age,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{telphone,jdbcType=VARCHAR},
       #{address,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{pwdsalt,jdbcType=VARCHAR}
       )
   </insert>

@@ -8,6 +8,7 @@
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="target" jdbcType="VARCHAR" property="target" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="isbutton" jdbcType="INTEGER" property="isbutton" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, pid, mname, url, target, icon
+    id, pid, mname, url, target, icon, isbutton
   </sql>
   <select id="selectByExample" parameterType="com.lening.entity.MeunBeanExample" resultMap="BaseResultMap">
     select
@@ -102,9 +103,11 @@
   </delete>
   <insert id="insert" parameterType="com.lening.entity.MeunBean">
     insert into tb_meun (id, pid, mname, 
-      url, target, icon)
+      url, target, icon, 
+      isbutton)
     values (#{id,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT}, #{mname,jdbcType=VARCHAR}, 
-      #{url,jdbcType=VARCHAR}, #{target,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR})
+      #{url,jdbcType=VARCHAR}, #{target,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{isbutton,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.lening.entity.MeunBean">
     insert into tb_meun
@@ -127,6 +130,9 @@
       <if test="icon != null">
         icon,
       </if>
+      <if test="isbutton != null">
+        isbutton,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -146,6 +152,9 @@
       </if>
       <if test="icon != null">
         #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="isbutton != null">
+        #{isbutton,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -176,6 +185,9 @@
       <if test="record.icon != null">
         icon = #{record.icon,jdbcType=VARCHAR},
       </if>
+      <if test="record.isbutton != null">
+        isbutton = #{record.isbutton,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -188,7 +200,8 @@
       mname = #{record.mname,jdbcType=VARCHAR},
       url = #{record.url,jdbcType=VARCHAR},
       target = #{record.target,jdbcType=VARCHAR},
-      icon = #{record.icon,jdbcType=VARCHAR}
+      icon = #{record.icon,jdbcType=VARCHAR},
+      isbutton = #{record.isbutton,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -211,6 +224,9 @@
       <if test="icon != null">
         icon = #{icon,jdbcType=VARCHAR},
       </if>
+      <if test="isbutton != null">
+        isbutton = #{isbutton,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -220,7 +236,8 @@
       mname = #{mname,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
       target = #{target,jdbcType=VARCHAR},
-      icon = #{icon,jdbcType=VARCHAR}
+      icon = #{icon,jdbcType=VARCHAR},
+      isbutton = #{isbutton,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

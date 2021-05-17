@@ -5,6 +5,26 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="deptname" jdbcType="VARCHAR" property="deptname" />
   </resultMap>
+  <select id="getUserPostByIdAndDeptid" resultType="long">
+    select DISTINCT a.postid from tb_user_post a
+    LEFT JOIN tb_user_dept b on a.userid=b.userid
+    LEFT JOIN tb_dept_post c on  a.postid = c.postid
+    where a.userid= #{userid} and c.deptid= #{deptid}
+  </select>
+  <select id="getDeptPostList" resultType="PostBean">
+    select b.* from tb_dept_post a left join tb_post b on a.postid=b.id
+    where a.deptid=#{deptid}
+  </select>
+
+  <select id="getDeptPostIds" resultType="long">
+      select postid from tb_dept_post where deptid = #{deptid}
+  </select>
+  <delete id="depeteDeptPost">
+    delete from tb_dept_post where deptid=#{deptid}
+  </delete>
+  <insert id="saveDeptPost">
+      insert  into tb_dept_post(deptid,postid) values(#{deptid},#{postid})
+  </insert>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -81,7 +101,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from tb_dept
     where id = #{id,jdbcType=BIGINT}

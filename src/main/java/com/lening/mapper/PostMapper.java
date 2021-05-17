@@ -28,4 +28,10 @@ public interface PostMapper {
     int updateByPrimaryKeySelective(PostBean record);
 
     int updateByPrimaryKey(PostBean record);
+
+    List<Long> getPostMeunIds(@Param("postid") Long postid);
+
+    void deletePostMeunByPostid(@Param("postid") Long postid);
+
+    void savePostMeun(@Param("postid") Long postid, @Param("meunid") Long meunid);
 }

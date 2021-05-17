@@ -1,6 +1,8 @@
 package com.lening.entity;
 
-public class MeunBean {
+import java.io.Serializable;
+
+public class MeunBean implements Serializable {
     private Long id;
 
     private Long pid;
@@ -13,8 +15,17 @@ public class MeunBean {
 
     private String icon;
 
-    //回显使用的，在后台回显，比较方便，数据库不需要
-    private Boolean checked = false;
+    private Integer isbutton;
+
+    private boolean checked=false;
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
 
     public Long getId() {
         return id;
@@ -64,11 +75,11 @@ public class MeunBean {
         this.icon = icon == null ? null : icon.trim();
     }
 
-    public Boolean getChecked() {
-        return checked;
+    public Integer getIsbutton() {
+        return isbutton;
     }
 
-    public void setChecked(Boolean checked) {
-        this.checked = checked;
+    public void setIsbutton(Integer isbutton) {
+        this.isbutton = isbutton;
     }
 }
